@@ -14,7 +14,7 @@ We have two methods of installed, you can use the npm or a standalone.
 
 Use the following command to install as dependency:
 ```bash
-npm install vue-acl --save
+npm install vue-acl3 --save
 ```
 #### For standalone installation
 
