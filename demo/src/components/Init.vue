@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<h1>Welcome the vue-acl demo</h1>
+		<h1>Welcome the vue-acl3 demo</h1>
 		<small>Accessing with {{ active }}</small>
 		<hr>
 		<button @click="change('admin')">Change to admin access</button>
@@ -20,13 +20,13 @@ export default{
 	},
 	methods: {
 		change(access) {
-			this.$access(access)
+			this.$access(access);
 			this.active = this.$access()
-
+			console.log(this.active);
 			if( this.$can('admin') )
-				alert('Hello, admin')
+				console.log('Hello, admin')
 			else
-				alert('No is admin')
+				console.log('No is admin')
 		}
 	}
 }

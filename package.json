@@ -1,6 +1,6 @@
 {
-  "name": "vue-acl",
-  "version": "2.0.0",
+  "name": "vue-acl3",
+  "version": "1.0.0",
   "description": "Plugin of Access Control List from Vue JS 2",
   "main": "src/es5.js",
   "scripts": {
@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/leonardovilarinho/vue-acl.git"
+    "url": "git+https://github.com/tenstone/vue-acl.git"
   },
   "keywords": [
     "acl",
@@ -20,7 +20,7 @@
   "author": "Leonardo Vilarinho",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/leonardovilarinho/vue-acl/issues"
+    "url": "https://github.com/tenstone/vue-acl/issues"
   },
-  "homepage": "https://github.com/leonardovilarinho/vue-acl#readme"
+  "homepage": "https://github.com/tenstone/vue-acl#readme"
 }

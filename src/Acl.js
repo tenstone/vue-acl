@@ -17,26 +17,40 @@ var Acl = function () {
 		key: 'init',
 		value: function init(router, permission) {
 			this.router = router;
-			this.permission = permission;
+			if(Array.isArray(permission)){
+				this.permission = permission;
+			}else if(permission.indexOf('|')!==-1){
+				this.permission = permission.split('|');
+			}else{
+                this.permission = [permission];
+            }
 		}
 	}, {
 		key: 'check',
 		value: function check(permission) {
-			if (typeof permission != 'undefined') permission = permission.indexOf('|') !== -1 ? permission.split('|') : permission;
-
-			if (Array.isArray(permission)) return permission.indexOf(this.permission) !== -1 ? true : false;else return this.permission == permission;
+            if (permission == undefined){
+                return true;
+            }
+			if(permission.indexOf('|')!==-1){
+				console.error('不支持多个permission的检查');
+			}
+			if (this.permission.indexOf(permission)===-1){
+				return false;
+			}
+			return true;
 		}
 	}, {
 		key: 'router',
 		set: function set(router) {
 			var _this = this;
-
 			router.beforeEach(function (to, from, next) {
-				var fail = to.meta.fail || '/';
-				if (typeof to.meta.permission == 'undefined') return next(fail);else {
-					if (!_this.check(to.meta.permission)) return next(fail);
+				if(typeof to.meta == 'undefined'){
 					next();
 				}
+				var fail = to.meta.fail || '/';
+				if (!_this.check(to.meta.permission))
+					return next(fail);
+				next();
 			});
 		}
 	}]);
@@ -60,7 +74,16 @@ Acl.install = function (Vue, _ref) {
 	Vue.prototype.$access = function () {
 		var newAccess = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
 
-		if (newAccess != null) acl.permission = newAccess;else return acl.permission;
+		if (newAccess != null)
+            if(Array.isArray(newAccess)){
+                acl.permission = newAccess;
+            }else if(newAccess.indexOf('|')!==-1){
+                acl.permission = newAccess.split('|');
+            }else{
+                acl.permission = [newAccess];
+            }
+		else
+			return acl.permission;
 	};
 };
 

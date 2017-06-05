@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Init from './components/Init.vue'
 import VueRouter from 'vue-router'
-import VueAcl from '../../src/es6'
+import VueAcl from '../../src/Acl'
 
 Vue.use(VueRouter)
 
@@ -9,7 +9,6 @@ const routes = [
   {
     path: '/',
     component: require('./components/Public.vue'),
-    meta: {permission: 'admin|any', fail: '/error'}
   },
   {
     path: '/manager',
@@ -23,8 +22,7 @@ const routes = [
   },
   {
     path: '/error',
-    component: require('./components/Error.vue'),
-    meta: {permission: 'admin|any'}
+    component: require('./components/Error.vue')
   },
 ]
 
@@ -32,7 +30,7 @@ const router = new VueRouter({
   routes
 })
 
-Vue.use(VueAcl, {router: router, init: 'any'})
+Vue.use(VueAcl, {router: router, init: ['any','admin']})
 
 new Vue({
   el: '#app',
