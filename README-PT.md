@@ -18,7 +18,7 @@ Use o seguinte comando para instalar como uma dependência:
 
 #### Para instalção standalone
 
-Copie o arquivo `src/es6.js` para seu diretório de plugins.
+Copie o arquivo `src/Acl.js` para seu diretório de plugins.
 
 ### Começando:
 
